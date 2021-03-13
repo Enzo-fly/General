@@ -1,0 +1,86 @@
+<p>form works!</p>
+{{operationFormGroup.value | json}}
+
+<div class="container">
+      <h3>Cards details</h3>
+
+      <form [formGroup]="operationFormGroup" (ngSubmit)="onSubmit()">
+        <div class="wrapper">
+          <div class="cardSender">
+              <div class="cardNumberGroup">
+                    <label>Sender's card number</label><br>
+                    <input [class.brd1]="operationFormGroup.get('senderNumber').invalid &&
+                      operationFormGroup.get('senderNumber').touched" formControlName="senderNumber"
+                      placeholder="0000 0000 0000 0000" type="text" class="cardNumber">
+              </div>
+              <div class="expNcvv">
+                  <div class="expDate">
+                    <label>Card expiry date</label><br>
+                    <input formControlName="senderDateMonth" type="text" placeholder="MM" class="expDateMonth">
+                    &nbsp;
+                    <input formControlName="senderDateYear" type="text" placeholder="YY" class="expDateYear">
+                  </div>
+                  <div class="cvvMain">
+                    <label>CVC2/CVV2 <div class="i">i</div></label><br>
+                    <input [class.brd1]="operationFormGroup.get('senderCvc2').invalid &&
+                          operationFormGroup.get('senderCvc2').touched" formControlName="senderCvc2"
+                           type="text" class="cvv">
+                  </div>
+              </div>
+         </div>
+          <div class="transferDetail">
+              <div class="arrow"><img src="assets/Arrow.svg"></div>
+              <div class="transferBlock">
+                <label>Transfer amount</label><br>
+                <input [class.brd1]="operationFormGroup.get('senderAmount').invalid &&
+                      operationFormGroup.get('senderAmount').touched" formControlName="senderAmount"
+                       placeholder="0.00 UAH" type="text" class="transferAmount">
+              </div>
+              <div class="transferInfo"><div class="commission">Commission: 1%+5UAH</div> <div class="i2">i</div></div>
+              <div class="transferInfo"><div class="limits">Transfer's limits</div> <div class="i3">i</div></div>
+          </div>
+          <div class="cardReceiver">
+            <div class="cardNumberGroup">
+              <label>Recepient's card number</label><br>
+              <input [class.brd1]="operationFormGroup.get('receiverNumber').invalid &&
+                    operationFormGroup.get('receiverNumber').touched" formControlName="receiverNumber"
+                     placeholder="0000 0000 0000 0000" type="text" class="cardNumber">
+            </div>
+            <div class="notifyReceiver">
+              <input class="checkBox" type="checkbox" formControlName="receiverNotification" id="receiver">
+              <label class="myLabel" for="receiver">Notify the recipient <div class="i1">i</div></label>
+            </div>
+        </div>
+          <div class="additionalDetails">
+              <div class="cellPhoneBlock">
+                <label>Cell phone</label><br>
+                <input class="cellPhone" formControlName="phone" type="text" placeholder="+38(___)___-__-__" >
+              </div>
+              <div class="emailMain">
+                <input type="checkbox" formControlName="email" id="theEmail">
+                <label class="myLabel" for="theEmail">Email to get a receipt</label>
+              </div>
+              <div class="buttonClass">
+                <button  type="submit" class="button">Continue</button>
+              </div>
+          </div>
+          <div class="smallDetails">
+            <div>Transfer is available between Ukrainian card only in local currency.<br>
+              Please find out about Public offering of card transfer services <a href="#">here</a>.
+            </div>
+            <div>
+              <img src="assets/Visa.jpg">
+            </div>
+         </div>
+        </div>
+      </form>
+
+</div>
+
+      <div class="brd2">
+        <label>Click to receive test bean from Backend</label>
+        <br>
+        <button (click)="getTestBean()">Receive</button>
+        <h3>{{myMessage}}</h3>
+      </div>
+
